@@ -1,75 +1,39 @@
-mptsd
-=====
-mptsd receives mpegts streams from multicast (udp/rtp) or http and combines
-them into one multiple program stream that is suitable for outputing to DVB-C
-modulator. It is tested with Dektec DTE-3114 Quad QAM Modulator and it
-is used in production in couple of small DVB networks.
+# mptsd
 
-Check out the WiKi to give examples of use
-[Wiki](https://github.com/TVforME/mptsd/wiki)
+mptsd receives MPEG-TS streams from multicast (UDP/RTP) or HTTP and combines them into one multiple program stream that is suitable for output to a DVB-C modulator. It has been tested with the Dektec DTE-3114 Quad QAM Modulator and is used in production in several small DVB networks.
 
-Installation
-============
-mptsd do not depend on any external libraries. There are two source code
-dependancies that come with mptsd - libfuncs and libtsfuncs.
+Check out the [Wiki](https://github.com/TVforME/mptsd/wiki) for examples of use.
 
-Make sure your kernel has CONFIG_HIGH_RES_TIMERS enabled. Otherwise sleep
-timeout probably won't be able to calibrate itself and mptsd will not work.
+## Installation
 
-Documentation
-=============
-mptsd is controlled using command line parameters. Run mptsd to see all of
-the parameters and explanation what every one of them does. Also there
-are 4 configuration files. In the distribution there are example files that
-you can change to suit your needs.
+mptsd does not depend on any external libraries. There are two source code dependencies that come with mptsd - `libfuncs` and `libtsfuncs`.
 
-  mptsd.conf          - This file configures the network_id in outputed
-                        NIT table and also MPEG PSI tables playout timeouts.
+Make sure your kernel has `CONFIG_HIGH_RES_TIMERS` enabled. Otherwise, the sleep timeout may not be able to calibrate itself, and mptsd will not work.
 
-  mptsd_nit.conf      - Configures NIT table output.
+## Documentation
 
-  mptsd_channels.conf - Configure inputs, SDT provider name and transport_stream_id
+mptsd is controlled using command line parameters. Run `mptsd` to see all of the parameters and an explanation of what each one does. Additionally, there are 4 configuration files. Example files are included in the distribution, which you can modify to suit your needs.
 
-  mptsd_epg.conf      - Configures EIT current/next tables. This file is auto
-                        reloaded when it is changed. This allows EPG in output
-                        to work.
+- `mptsd.conf` - Configures the `network_id` in the outputted NIT table and also MPEG PSI tables playout timeouts.
+- `mptsd_nit.conf` - Configures NIT table output.
+- `mptsd_channels.conf` - Configures inputs, SDT provider name, and `transport_stream_id`.
+- `mptsd_epg.conf` - Configures EIT current/next tables. This file is auto-reloaded when it is changed, allowing EPG in the output to work.
 
 One mptsd instance should be used for each transponder.
 
-Output Stream
-=============
-mptsd can achieve perfect PCR restamping to output using "-m 3".
-This is useful for hardware modulators that require correct PCR values
-(most cheap modulators do, so always use "-m 3" with them).
-mptsd was tested and found to be working ok with Dektec DTE-3114 & HiDes UT-100C.
+## Output Stream
 
-To enable RTP output instead of plain UDP for network streams,
-specify the SSRC identifier via the -s flag (must be != 0).
+mptsd can achieve perfect PCR restamping to output using `-m 3`. This is useful for hardware modulators that require correct PCR values (most cheap modulators do, so always use `-m 3` with them). mptsd was tested and found to be working well with the Dektec DTE-3114 & HiDes UT-100C.
 
-Development
-===========
-The development is tracked using git. The repository is hosted at github
-to get it, run the following command:
+To enable RTP output instead of plain UDP for network streams, specify the SSRC identifier via the `-s` flag (must be != 0).
 
-   git clone git://github.com/gfto/mptsd.git
-   git submodule init
-   git submodule update
-     OR
-   git submodule update --recursive --remote  // if you like to checkout HEAD submodules.
+## Development
 
-Compiling
-=========
-After cloning the git repository as described in Development section
-just run `make`.
+The development is tracked using git. The repository is hosted on GitHub. To get it, run the following commands:
 
-Releases
-========
-Official releases can be downloaded from tsdecrypt home page which is:
-
-   http://georgi.unixsol.org/programs/mptsd/
-
-Contact
-=======
-For patches, bug reports, complaints and so on send e-mail to:
-
-   Georgi Chorbadzhiyski <georgi@unixsol.org>
+```bash
+git clone git://github.com/gfto/mptsd.git
+git submodule init
+git submodule update
+# OR
+git submodule update --recursive --remote  # If you want to checkout HEAD submodules.
