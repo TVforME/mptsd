@@ -1,3 +1,8 @@
+
+2024-08-16 : version 1.2
+* Change to meson build system to modernise away from Makefile.
+* added -v option to display version name. Attempt to determine mptsd is on a system 
+
 2012-01-26 : Version 1.1
  * Added support for RTP input.
 
