@@ -6,7 +6,7 @@ modulator. It is tested with Dektec DTE-3114 Quad QAM Modulator and it
 is used in production in couple of small DVB networks.
 
 Check out the WiKi to give examples of use
-[mptsd Wiki](https://github.com/TVforME/mptsd/wiki)
+[Wiki](https://github.com/TVforME/mptsd/wiki)
 
 Installation
 ============
