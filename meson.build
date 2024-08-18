@@ -44,13 +44,8 @@ sources = files(
 # Create the mptsd executable and link with libfuncs and libtsfuncs
 mptsd = executable('mptsd', sources, dependencies: [libfuncs_dep, libtsfuncs_dep] + libs, install: true)
 
-# Optional stripping step
-strip_target = custom_target(
-  'strip',
-  input: mptsd,
-  output: 'mptsd',
-  command: [find_program('strip'), mptsd]
-)
+# Add a post-install script to strip the executable
+meson.add_install_script('install-strip.sh', mptsd.full_path())
 
 # Custom clean step
 clean_custom_target = custom_target(
