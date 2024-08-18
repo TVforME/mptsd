@@ -27,13 +27,52 @@ mptsd can achieve perfect PCR restamping to output using `-m 3`. This is useful 
 
 To enable RTP output instead of plain UDP for network streams, specify the SSRC identifier via the `-s` flag (must be != 0).
 
-## Development
+# How to Build and Install `mptsd` from Source using meson build system.
 
-The development is tracked using git. The repository is hosted on GitHub. To get it, run the following commands:
+This guide provides step-by-step instructions on how to build and install the `mptsd` project from source using the Meson build system. Additionally, it explains how to strip the `mptsd` binary post-installation to reduce its size.
+The make build remains as a second option if you not wanting to install meson and ninja on your system.
+
+Before you begin, ensure that the following dependencies installed on your system:
+
+- **Meson Build System**: Version 1.3.2 or later
+- **Ninja Build System**: Version 1.11.1 or later
+- **GCC Compiler**: Version 13.2.0 or later
+- **Git**: To clone the repository
+
+### Installing Dependencies on Ubuntu
+
+You can install the required dependencies using `apt`:
 
 ```bash
-git clone git://github.com/gfto/mptsd.git
-git submodule init
-git submodule update
-# OR
-git submodule update --recursive --remote  # If you want to checkout HEAD submodules.
+sudo apt update
+sudo apt install meson ninja-build gcc git
+```
+
+### Clone the repository:
+
+```bash
+git clone https://github.com/TVforME/mptsd.git
+cd mptsd
+```
+## Set up the build directory
+
+```bash
+meson setup builddir
+```
+### Compile the project
+
+```bash
+meson compile -C builddir
+```
+
+### Install the executable
+
+```bash
+meson install -C builddir
+```
+
+### Clean the build directory (if necessary)
+
+```bash
+meson compile -C builddir clean_custom
+```
