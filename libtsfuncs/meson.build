@@ -1,6 +1,4 @@
-project('libtsfuncs', 'c')
-
-# Define source files
+# Define source files for libtsfuncs
 libtsfuncs_sources = files(
   'log.c',
   'tsfuncs.c',

@@ -1,6 +1,4 @@
-project('libfuncs', 'c')
-
-# Define source files
+# Define source files for libfuncs
 libfuncs_sources = files(
   'queue.c',
   'list.c',
